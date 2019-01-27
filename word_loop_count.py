@@ -1,19 +1,35 @@
 # coding: utf-8
 
+import sys
 import random
 
 print('文字列を入力して下さい => ', end = '')
-input = input()
+input_word = input()
+
+if len(input_word) > 8:
+    okay = False
+    while not okay:
+        while True:
+            if len(input_word) > 10:
+                print('めっちゃ', end = '')
+            print('時間かかるかも知れないけどいいの？[y/n]')
+            yes_or_no = input()
+            if yes_or_no in { 'y', 'n' }:
+                break
+        if yes_or_no == 'y':
+            okay = True
+        if yes_or_no == 'n':
+            print('Good call!')
+            sys.exit()
 
 for_count = 0
-is_not_input_word = True
-
-while is_not_input_word:
+is_input_word = False
+while not is_input_word:
     for_count += 1
     i = 0
     result = ''
-    chars = [*input]
-    numbers = [*range(0, len(input))]
+    chars = [*input_word]
+    numbers = [*range(0, len(input_word))]
 
     for _ in range(len(chars)):
         random_number = random.randint(0, len(numbers) - 1)
@@ -23,8 +39,8 @@ while is_not_input_word:
 
     print(result)
 
-    if result == input:
-        is_not_input_word = False
+    if result == input_word:
+        is_input_word = True
         print('')
         print('Congratulation!')
-        print('「%s」が生成されるまで%s回ループしました' % (input, for_count))
+        print('「%s」が生成されるまで%s回ループしました' % (input_word, for_count))
