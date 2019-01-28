@@ -2,6 +2,7 @@
 
 import sys
 import random
+import time
 
 print('文字列を入力して下さい => ', end = '')
 input_word = input()
@@ -24,6 +25,7 @@ if len(input_word) > 8:
 
 for_count = 0
 is_input_word = False
+start = time.time()
 while not is_input_word:
     for_count += 1
     i = 0
@@ -41,6 +43,7 @@ while not is_input_word:
 
     if result == input_word:
         is_input_word = True
-        print('')
-        print('Congratulation!')
-        print('「%s」が生成されるまで%s回ループしました' % (input_word, for_count))
+elapsed_time = time.time() - start
+print('')
+print('Congratulation!')
+print('「%s」が生成されるまで%f秒かかり、%s回ループしました' % (input_word, elapsed_time, for_count))
